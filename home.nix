@@ -16,10 +16,10 @@ in {
     gcc
 
     fira-code
-    #maple-mono.truetype
+    # only the hinted version seem to render `=>` correctly
     maple-mono.truetype-autohint
-    maple-mono.NF-unhinted
-    maple-mono.NF-CN-unhinted
+    maple-mono.NF
+    maple-mono.NF-CN
 
     vscodium
     typst
@@ -27,6 +27,16 @@ in {
     jdk21
     jetbrains.idea
   ];
+
+  xdg.configFile."niri" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/niri";
+    recursive = true;
+  };
+
+  xdg.configFile."ghostty" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/ghostty";
+    recursive = true;
+  };
 
   gtk = {
     enable = true;
@@ -69,10 +79,6 @@ in {
   programs.ghostty = {
     enable = true;
     enableZshIntegration = true;
-    settings = {
-      #window-decoration = "none";
-      font-family = "Maple Mono NF CN";
-    };
   };
 
   programs.zsh = {
@@ -83,8 +89,8 @@ in {
     syntaxHighlighting.enable = true;
     shellAliases = {
       rebuild = "sudo nixos-rebuild switch";
-      conf = "sudo hx /etc/nixos/configuration.nix";
-      home = "sudo hx /etc/nixos/home.nix";
+      conf = "hx /etc/nixos/configuration.nix";
+      home = "hx /etc/nixos/home.nix";
     };
   };
 
