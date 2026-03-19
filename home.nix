@@ -11,6 +11,7 @@ in {
     slack
     evolution
     nautilus
+    papers
     
     rustup
     gcc
@@ -35,6 +36,11 @@ in {
 
   xdg.configFile."ghostty" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/ghostty";
+    recursive = true;
+  };
+
+  xdg.configFile."tuigreet" = {
+    source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/tuigreet";
     recursive = true;
   };
 

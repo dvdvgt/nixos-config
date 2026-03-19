@@ -7,6 +7,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    tuigreet = {
+      url = "github:notAShelf/tuigreet";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
@@ -16,6 +21,13 @@
       specialArgs = { inherit inputs; };
       system = "x86_64-linux";
       modules = [
+        {
+          nixpkgs.overlays = [
+            (final: prev: {
+              tuigreet = inputs.tuigreet.packages.${prev.system}.tuigreet;
+            })
+          ];
+        }
         ./configuration.nix
         ./noctalia.nix
         home-manager.nixosModules.home-manager

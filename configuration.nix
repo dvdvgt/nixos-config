@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -13,10 +13,6 @@
     ];
 
   # Bootloader.
-  boot.kernelParams = [
-    "video=card1-DP-3:2560x1440@59.9"
-    "video=card1-HDMI-A-1:1920x1200@59.950"
-  ];
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -101,6 +97,9 @@
      ghostty
      xwayland-satellite
      playerctl
+     ntfs3g
+     dosfstools
+     tuigreet
   ];
 
   programs.xwayland.enable = true;
@@ -129,7 +128,7 @@
     enable = true;
     settings = {
       default_session = {
-        command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd niri-session";
+        command = "${pkgs.tuigreet}/bin/tuigreet --time --cmd niri-session";
         user = "david";
       };
     };

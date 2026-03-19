@@ -1,0 +1,10 @@
+[[outputs]]
+connector = "DP-3"
+primary = true
+enabled = true
+
+[[outputs]]
+connector = "HDMI-A-1"
+enabled = false
+[2m2026-03-17T10:11:56.180580Z[0m [32m INFO[0m [2mtuigreet::output[0m[2m:[0m [2m211:[0m Deriving terminal size from primary output: DP-3
+[2m2026-03-17T10:11:56.181032Z[0m [32m INFO[0m [2mtuigreet::output[0m[2m:[0m [2m304:[0m Resizing terminal: 256 cols x 65 rows (font 10x22 px, output 'DP-3' 2560x1440 px)
