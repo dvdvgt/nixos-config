@@ -24,6 +24,9 @@
     enable = true;
     efiSupport = true;
     device = "nodev";
+    # use windows boot loader as a default
+    # NixOS appears first, with index 0. Windows has the index 1
+    default = 1;
     #useOSProber = true;
     extraEntries = ''
     menuentry 'Windows Boot Manager (on /dev/nvme0n1p1)' --class windows --class os $menuentry_id_option 'osprober-efi-5CA5-2127' {
