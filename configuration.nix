@@ -79,7 +79,7 @@
   users.users.david = {
     isNormalUser = true;
     description = "david";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "dialout" ];
     #packages = with pkgs; [];
   };
 
@@ -103,9 +103,11 @@
      ntfs3g
      dosfstools
      tuigreet
+     inputs.noctalia.packages.${pkgs.system}.default
   ];
 
   programs.xwayland.enable = true;
+  programs.niri.enable = true;
 
   virtualisation.docker.rootless = {
     enable = true;
@@ -124,7 +126,6 @@
 
   hardware.graphics.enable = true;
 
-  programs.niri.enable = true;
   programs.nix-ld.enable = true;
 
   services.greetd = {

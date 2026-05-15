@@ -29,6 +29,19 @@ in {
     jetbrains.idea
   ];
 
+  # programs.niri = {
+  #   package = niri;
+  #   settings = {
+  #     spawn-at-startup = [
+  #       {
+  #         command = [
+  #           "noctalia-shell"
+  #         ];
+  #       }
+  #     ];
+  #   };
+  # };
+
   xdg.configFile."niri" = {
     source = config.lib.file.mkOutOfStoreSymlink "${config.home.homeDirectory}/nixos/dotfiles/niri";
     recursive = true;
@@ -62,6 +75,7 @@ in {
     gtk4.extraConfig = {
       gtk-aplication-prefer-dark-theme = 1;
     };
+    gtk4.theme = config.gtk.theme;
   };
 
   dconf.settings = {
