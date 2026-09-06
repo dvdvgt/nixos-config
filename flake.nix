@@ -1,19 +1,9 @@
 {
-  nixConfig = {
-    extra-substituters = [ "https://noctalia.cachix.org" ];
-    extra-trusted-public-keys = [ "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4=" ];
-  };
-
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     noctalia = {
       url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    tuigreet = {
-      url = "github:notAShelf/tuigreet";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -26,13 +16,6 @@
       specialArgs = { inherit inputs; };
       system = "x86_64-linux";
       modules = [
-        {
-          nixpkgs.overlays = [
-            (final: prev: {
-              tuigreet = inputs.tuigreet.packages.${prev.system}.tuigreet;
-            })
-          ];
-        }
         ./configuration.nix
         home-manager.nixosModules.home-manager
         {
